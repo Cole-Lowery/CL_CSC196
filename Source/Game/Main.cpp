@@ -6,12 +6,16 @@
 #include <iostream>
 #include <Renderer/Renderer.h>
 #include <vector>
+#include "Input/InputSystem.h"
 int main(int argc, char* argv[]) {
     viper::Time time;
     viper::Renderer renderer;
 
     renderer.Initialize();
     renderer.CreateWindow("Viper Engine", 1280, 1024);
+
+    viper::InputSystem input;
+    input.Initialize();
 
     SDL_Event e;
     bool quit = false;
@@ -29,6 +33,18 @@ int main(int argc, char* argv[]) {
                 quit = true;
             }   
         }
+
+        input.Update();
+        if (input.GetKeyPressed(SDL_SCANCODE_A)) {
+            std::cout << "pressed\n";
+        }
+        if (input.GetMouseButtonDown(0)){
+            std::cout << "pressed\n";
+        }
+
+        viper::vec2 mouse = input.GetMousePosition();
+        std::cout << mouse.x << " " << mouse.y << std::endl;
+
 
         renderer.SetColor(0, 0, 0);
         renderer.Clear();

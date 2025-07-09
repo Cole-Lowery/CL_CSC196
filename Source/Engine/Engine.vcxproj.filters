@@ -23,6 +23,9 @@
     <ClCompile Include="Core\Time.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Input\InputSystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -38,6 +41,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector2.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputSystem.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
