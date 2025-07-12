@@ -20,61 +20,61 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
-    std::vector<viper::vec2> stars;
-    for (int i = 0; i < 100; i++) {
-        stars.push_back(viper::vec2(viper::random::getRandomFloat() * 1280, viper::random::getRandomFloat() * 1024));
-    }
-    
+    std::vector<viper::vec2> points;
 
     while (!quit) {
         time.Tick();
+        input.Update();
+
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_EVENT_QUIT) {
                 quit = true;
-            }   
+            }
         }
+        renderer.SetColor(0, 0, 0);
+        renderer.Clear();
+
+   
+        static viper::vec2 prevMousePosition = input.GetMousePosition();
+        viper::vec2 currentMousePosition = input.GetMousePosition();
+
+       
+        viper::vec2 dir = currentMousePosition - prevMousePosition;
+
+       
+        float length = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+        if (length != 0) {
+            dir.x /= length;
+            dir.y /= length;
+        }
+
+        float desiredLength = 100.0f;
+
+        viper::vec2 extendedEnd = prevMousePosition + dir * desiredLength;
+
+        if (input.GetMouseButtonDown(viper::InputSystem::MouseButton::Left)) {
+            renderer.SetColor(255, 0, 0);
+            renderer.DrawLine(prevMousePosition.x, prevMousePosition.y, extendedEnd.x, extendedEnd.y);
+        }
+
+        prevMousePosition = currentMousePosition;
 
         input.Update();
         if (input.GetKeyPressed(SDL_SCANCODE_A)) {
-            std::cout << "pressed\n";
-        }
-        if (input.GetMouseButtonDown(0)){
             std::cout << "pressed\n";
         }
 
         viper::vec2 mouse = input.GetMousePosition();
         std::cout << mouse.x << " " << mouse.y << std::endl;
 
-
-        renderer.SetColor(0, 0, 0);
-        renderer.Clear();
-
-        viper::vec2 speed{ -0.1f, 0.0f };
-        float length = speed.Length();
-        for (viper::vec2 star : stars) {
-            star += speed * time.GetDeltaTime();
-
-            if (star[0] > 1280) star[0] = 5;
-            if (star.x > 0) star[0] = 1280;
-
-            renderer.SetColor(viper::random::getRandomInt(0, 255), viper::random::getRandomInt(0, 255), viper::random::getRandomInt(0, 255));
-            renderer.DrawPoint(star.x, star.y);
+        for (int i = 0; i < (int)points.size() - 1; i++) {
+            renderer.SetColor(255, 255, 255);
+            renderer.DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
         }
-
-        /*for (int i = 0; i < 10; i++) {
-            renderer.SetColor(viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256));
-            renderer.DrawLine(viper::random::getRandomFloat() * 1280, viper::random::getRandomFloat() * 1280, viper::random::getRandomFloat() * 1280, viper::random::getRandomFloat() * 1280);
-        }
-
-        for (int i = 0; i < 20; i++) {
-            renderer.SetColor(viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256));
-            renderer.DrawPoint(viper::random::getRandomFloat() * 1280, viper::random::getRandomFloat() * 1280);
-        }*/
-
-        //renderer.SetColor(viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256));
-        //renderer.DrawPoint(v.x, v.y);
 
         renderer.Present();
+
+       
     }
 
     renderer.Shutdown();
