@@ -26,6 +26,9 @@
     <ClCompile Include="Input\InputSystem.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Audio\AudioSystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -44,6 +47,15 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Input\InputSystem.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioSystem.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StringHelper.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
