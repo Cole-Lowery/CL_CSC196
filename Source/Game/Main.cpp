@@ -71,9 +71,6 @@ int main(int argc, char* argv[]) {
         renderer.SetColor(0, 0, 0);
         renderer.Clear();
 
-        viper::vec2 speed{ 140.0f, 0.0f };
-        float length = speed.Length();
-
         for (int i = 0; i < (int)points.size() - 1; i++) {
             renderer.SetColor(viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256), viper::random::getRandomInt(0, 256));
             renderer.DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
