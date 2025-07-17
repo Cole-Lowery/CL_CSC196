@@ -6,10 +6,13 @@ namespace viper {
 	template<typename T>
 	struct Vector3
 	{
-		T x, y;
+		union {
+			struct { T x, y, z; };
+			struct { T r, g, b;};
+		};
 
 		Vector3() = default;
-		Vector3(T x, T y) : x{ x }, y{ y } {}
+		Vector3(T x, T y, T z) : x{ x }, y{ y }, z{ z } {}
 
 		T operator [] (unsigned int index) const{ assert(index < 2); return (&x)[index]; }
 		T& operator [] (unsigned int index) { assert(index < 2); return (&x)[index]; }
@@ -45,6 +48,6 @@ namespace viper {
 		float Length() const { return viper::math::sqrtf(LengthSqr()); }
 	};
 
-	using ivec2 = Vector3<int>;
-	using vec2 = Vector3<float>;
+	using ivec3 = Vector3<int>;
+	using vec3 = Vector3<float>;
 }

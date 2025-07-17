@@ -6,7 +6,10 @@ namespace viper {
 	template<typename T>
 	struct Vector2
 	{
-		T x, y;
+		union {
+			struct { T x, y; };
+			struct { T u, v; };
+		};
 
 		Vector2() = default;
 		Vector2(T x, T y) : x{ x }, y{ y } {}
@@ -43,6 +46,28 @@ namespace viper {
 		/// </summary>
 		/// <returns>The length of the vector as a float.</returns>
 		float Length() const { return viper::math::sqrtf(LengthSqr()); }
+
+		/// <summary>
+		/// Returns a normalized (unit length) version of the vector.
+		/// </summary>
+		/// <returns>A new Vector2 instance representing the normalized (unit) vector.</returns>
+		Vector2 Normalized() const { return *this / Length(); }
+
+		/// <summary>
+		/// Calculates the angle, in radians, of the vector from the origin to the point (x, y).
+		/// </summary>
+		/// <returns>The angle in radians between the positive x-axis and the vector (x, y), computed using atan2f(y, x).</returns>
+		float Angle() const {
+			return viper::math::atan2f(y, x);
+		}	
+		Vector2 Rotate(float radians) const {
+			Vector2 v;
+
+			v.x = x * viper::math::cosf(radians) - y * viper::math::sinf(radians);
+			v.y = x * viper::math::sinf(radians) + y * viper::math::cosf(radians);
+
+			return v; // Return the rotated vector
+		}
 	};
 
 	using ivec2 = Vector2<int>;

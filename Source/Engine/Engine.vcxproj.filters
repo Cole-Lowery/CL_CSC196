@@ -29,6 +29,15 @@
     <ClCompile Include="Audio\AudioSystem.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\model.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -56,6 +65,18 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Core\StringHelper.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\model.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
