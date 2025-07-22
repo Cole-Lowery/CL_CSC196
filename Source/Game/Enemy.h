@@ -1,5 +1,5 @@
 #pragma once
-#include "Game/Actor.h"
+#include "Framework/Actor.h"
 #include "Math/Transform.h"	
 
 class Enemy : public viper::Actor {

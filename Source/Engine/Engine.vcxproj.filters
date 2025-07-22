@@ -32,10 +32,13 @@
     <ClCompile Include="Renderer\model.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Actor.cpp">
+    <ClCompile Include="Framework\Scene.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene.cpp">
+    <ClCompile Include="Framework\Actor.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Game.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -73,10 +76,16 @@
     <ClInclude Include="Math\Transform.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Actor.h">
+    <ClInclude Include="Framework\Scene.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene.h">
+    <ClInclude Include="Framework\Actor.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Game.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
