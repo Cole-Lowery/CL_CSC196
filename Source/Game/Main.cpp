@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 	viper::GetEngine().Initialize();
 
 	std::unique_ptr<spaceGame> game = std::make_unique<spaceGame>();
-
+    game->Initialize();
   
 
     // Load sounds into the audio system
@@ -58,13 +58,14 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().Clear();
 
         // Draw all actors
-		scene.Draw(viper::GetEngine().GetRenderer());
+		game->Update();
+        game->Draw();
 
         // Present the rendered frame
         viper::GetEngine().GetRenderer().Present();
     }
 
 	viper::GetEngine().Shutdown();  
-
+    game->Shutdown();
     return 0;
 }

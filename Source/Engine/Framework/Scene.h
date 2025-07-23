@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 #include <vector>
 #include <memory>
 
@@ -6,12 +6,13 @@ namespace viper {
 	class Scene {
 	public:
 		Scene() = default;
-		void Update(float deltaTime);
+
+		void Update(float dt);
 		void Draw(class Renderer& renderer);
 
 		void AddActor(std::unique_ptr<class Actor> actor);
 
 	private:
-		std::vector<std::unique_ptr<class Actor>> m_actors; // List of actors in the scene	
+		std::vector<std::unique_ptr<class Actor>> m_actors;
 	};
 }

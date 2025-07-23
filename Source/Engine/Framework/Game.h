@@ -1,17 +1,17 @@
-#pragma once 
+#pragma once
 #include <memory>
 
-namespace viper{
+namespace viper {
 	class Game {
-		public:
+	public:
 		Game() = default;
-		bool Initialize();
-		void Shutdown();
-		void Update();
-		void Draw();
+
+		virtual bool Initialize() = 0;
+		virtual void Shutdown() = 0;
+		virtual void Update() = 0;
+		virtual void Draw() = 0;
 
 	protected:
-		std::unique_ptr<class Scene> m_scene; // Scene containing all actors
+		std::unique_ptr <class Scene > m_scene;
 	};
-
 }

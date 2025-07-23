@@ -1,11 +1,16 @@
 #include "Actor.h"
-#include "../Renderer/Renderer.h"
+#include "../Renderer/Model.h"
 
-void viper::Actor::Update(float deltaTime)
+namespace viper
 {
-}
+	void Actor::Update(float dt)
+	{
+		m_transform.position += velocity * dt;
+	}
 
-void viper::Actor::Draw(Renderer& renderer) const
-{
-	m_model->Draw(renderer, m_transform);
+	void Actor::Draw(Renderer& renderer)
+	{
+		m_model->Draw(renderer, m_transform);
+	}
+
 }

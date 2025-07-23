@@ -20,7 +20,7 @@
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\SpaceGame.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
