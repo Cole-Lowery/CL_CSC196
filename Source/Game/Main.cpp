@@ -11,6 +11,8 @@
 #include "Input/InputSystem.h"
 #include "Framework/Scene.h"
 #include "Engine.h" 
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
 
 #include "Game/spaceGame.h"
 #include "../Game/Player.h"
@@ -37,6 +39,11 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 
+    Font* font = new Font();
+    font->Load("Madina.ttf", 20);
+    Text *text = new Text(font);
+    text->Create(GetEngine().GetRenderer(), "Hello World", vec3{1, 1, 1, 1});
+
     SDL_Event e;
     bool quit = false;
 
@@ -60,6 +67,8 @@ int main(int argc, char* argv[]) {
         // Draw all actors
 		game->Update();
         game->Draw();
+
+        text->Draw(GetEngine().GetRenderer(), 40.0f, 40.0f);
 
         // Present the rendered frame
         viper::GetEngine().GetRenderer().Present();
