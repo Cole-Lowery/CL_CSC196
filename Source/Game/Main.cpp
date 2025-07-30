@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
   
 
     // Load sounds into the audio system
-
+    /*
     viper::GetEngine().GetAudio().AddSound("bass.wav", "base");
     viper::GetEngine().GetAudio().AddSound("snare.wav", "snare");
     viper::GetEngine().GetAudio().AddSound("clap.wav", "clap");
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 
-    /*
+    
     viper::Font* font = new viper::Font();
     font->Load("Madina.ttf", 60);
     viper::Text *text = new viper::Text(font);
@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().Clear();
 
         // Draw all actors
-        game->Update(viper::Time.GetTime());
+        //game->Update();
         game->Draw();
 
         //text->Draw(viper::GetEngine().GetRenderer(), 40.0f, 40.0f);

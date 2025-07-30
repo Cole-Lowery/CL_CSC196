@@ -25,9 +25,6 @@ public:
 	void Draw() override;
 
 private:
-	int m_score{ 0 };
-	int m_lives{ 3 };
-
 	GameState m_gameState = GameState::Initialize;
 	float m_enemySpawnTimer{ 0.0f };
 

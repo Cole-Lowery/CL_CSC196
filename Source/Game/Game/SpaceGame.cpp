@@ -17,10 +17,10 @@ bool SpaceGame::Initialize()
     m_scene = std::make_unique<viper::Scene>(this);
 
     m_titleFont = std::make_unique<viper::Font>();
-    m_titleFont->Load("Assets/MetalLord.ttf", 128);
+    m_titleFont->Load("Assets/Madina.ttf", 128);
 
     m_uiFont = std::make_unique<viper::Font>();
-    m_uiFont->Load("Assets/MetalLord.ttf", 48);
+    m_uiFont->Load("Assets/Madina.ttf", 48);
 
     return true;
 }
