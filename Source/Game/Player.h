@@ -1,15 +1,21 @@
 #pragma once
 #include "Framework/Actor.h"
-#include "Math/Transform.h"	
 
 class Player : public viper::Actor {
 public:
+	float speed = 200;
+	float rotationRate = 180;
+	float fireTime = 0.5f;
+	float fireTimer = 0;
+
+public:
 	Player() = default;
-	Player(const viper::Transform& transform, std::shared_ptr<viper::Model> model)
-		: viper::Actor(transform, model) {}
+	Player(const viper::Transform transform, std::shared_ptr<viper::Model> model) :
+		Actor{ transform, model }
+	{
+	}
 
-	void Update(float deltaTime) override;
+	void Update(float dt);
 
-private:
+	void OnCollision(Actor* other);
 };
-

@@ -1,15 +1,40 @@
 #pragma once
 #include "Framework/Game.h"
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
 
-class spaceGame : public viper::Game {
-	public:
-		spaceGame() = default;
+class SpaceGame : public viper::Game {
+public:
+	enum class GameState {
+		Initialize,
+		Title,
+		StartGame,
+		StartRound,
+		Game,
+		PlayerDead,
+		GameOver,
+	};
 
-		bool Initialize();
-		void Shutdown();
+public:
+	SpaceGame() = default;
 
-		void Update();
-		void Draw();
-	
-	private:
+	bool Initialize() override;
+	void Shutdown() override;
+
+	void Update(float dt);
+	void Draw() override;
+
+private:
+	int m_score{ 0 };
+	int m_lives{ 3 };
+
+	GameState m_gameState = GameState::Initialize;
+	float m_enemySpawnTimer{ 0.0f };
+
+	std::shared_ptr<class viper::Font> m_titleFont;
+	std::shared_ptr<class viper::Font> m_uiFont;
+
+	std::unique_ptr<class viper::Font> m_titleText;
+	std::unique_ptr<class viper::Font> m_scoreText;
+	std::unique_ptr<class viper::Font> m_livesText;
 };

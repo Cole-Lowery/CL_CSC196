@@ -1,20 +1,58 @@
 #include "Player.h"
 #include "Engine.h"
+#include "Rocket.h"
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Math/Vector3.h"
+#include "GameData.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Model.h"
 #include "Input/InputSystem.h"
-#include <SDL3/SDL_scancode.h>
 
 void Player::Update(float dt)
 {
-	float speed = 200; // Speed in pixels per second
-    // Determine movement direction from WASD keys
-    viper::vec2 direction{ 0, 0 };
-    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_W)) direction.y = -1;
-    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_S)) direction.y = 1;
-    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) direction.x = -1;
-    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) direction.x = 1;
+    //Rotation
+    float rotate = 0;
+    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -1;
+    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate = +1;
 
-    if (direction.Length() > 0) {
-        direction = direction.Normalized();
-		m_transform.position += (direction * speed) * dt;
+    m_transform.rotation += (rotate * rotationRate) * dt;
+
+    //Thrust
+    float thrust = 0;
+    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_W)) thrust = +1;
+    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_S)) thrust = -1;
+
+    viper::vec2 direction{ 1, 0 };
+    viper::vec2 force = direction.Rotate(viper::math::degToRad(m_transform.rotation)) * thrust * speed;
+    velocity += force;
+
+    m_transform.position.x = viper::math::wrap(m_transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
+    m_transform.position.y = viper::math::wrap(m_transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
+
+    fireTimer -= dt;
+    if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
+        fireTimer = fireTime;
+
+        std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1.0f, 1.0f, 1.0f });
+
+        viper::Transform m_transform{ this->m_transform.position, this->m_transform.rotation, 2.0f };
+        auto rocket = std::make_unique<Rocket>(m_transform, model);
+        rocket->speed = 1500.0f;
+        rocket->lifespan = 2.0f;
+        rocket->name = "rocket";
+        rocket->tag = "player";
+
+        m_scene->AddActor(std::move(rocket));
+    }
+
+    Actor::Update(dt);
+
+}
+
+void Player::OnCollision(Actor* other)
+{
+    if (tag != other->tag) {
+        destroyed = true;
     }
 }
