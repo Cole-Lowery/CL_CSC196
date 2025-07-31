@@ -32,4 +32,6 @@ namespace viper {
 		success = SDL_RenderTexture(renderer.m_renderer, m_texture, NULL, &rect);
 		assert(success);
 	}
+
+	
 }

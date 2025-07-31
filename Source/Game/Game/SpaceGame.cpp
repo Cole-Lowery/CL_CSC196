@@ -15,8 +15,6 @@
 
 bool SpaceGame::Initialize()
 {
-
-    viper::file::SetCurrentDirectory("Assets");
     m_scene = std::make_unique<viper::Scene>(this);
 
     m_titleFont = std::make_unique<viper::Font>();
@@ -24,6 +22,10 @@ bool SpaceGame::Initialize()
 
     m_uiFont = std::make_unique<viper::Font>();
     m_uiFont->Load("Prisma.ttf", 48);
+
+    m_titleText = std::make_unique<viper::Text>(m_titleFont);
+    m_scoreText = std::make_unique<viper::Text>(m_uiFont);
+    m_livesText = std::make_unique<viper::Text>(m_uiFont);
 
     return true;
 }
