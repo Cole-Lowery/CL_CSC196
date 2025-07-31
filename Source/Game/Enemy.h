@@ -4,7 +4,7 @@
 
 class Enemy : public viper::Actor {
 public:
-	float speed = 200.0f;
+	float speed = 100.0f;
 
 public:
 	Enemy() = default;
@@ -15,5 +15,5 @@ public:
 
 	void Update(float dt) override;
 
-	void OnCollision(Actor* other);
+	void OnCollision(Actor* other) override;
 };

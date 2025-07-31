@@ -168,10 +168,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameData.h" />
-    <ClInclude Include="Game\Enemy.h" />
-    <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\SpaceGame.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Rocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

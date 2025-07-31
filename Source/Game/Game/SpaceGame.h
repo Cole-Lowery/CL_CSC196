@@ -22,7 +22,7 @@ public:
 	void Shutdown() override;
 
 	void Update(float dt);
-	void Draw() override;
+	void Draw(class viper::Renderer& renderer) override;
 
 private:
 	GameState m_gameState = GameState::Initialize;
@@ -31,7 +31,7 @@ private:
 	std::shared_ptr<class viper::Font> m_titleFont;
 	std::shared_ptr<class viper::Font> m_uiFont;
 
-	std::unique_ptr<class viper::Font> m_titleText;
-	std::unique_ptr<class viper::Font> m_scoreText;
-	std::unique_ptr<class viper::Font> m_livesText;
+	std::unique_ptr<class viper::Text> m_titleText;
+	std::unique_ptr<class viper::Text> m_scoreText;
+	std::unique_ptr<class viper::Text> m_livesText;
 };

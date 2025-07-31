@@ -1,6 +1,7 @@
 #include "SpaceGame.h"
 #include "Framework/Scene.h"
 #include "Core/Random.h"
+#include "Core/File.h"
 #include "Math/Vector2.h"
 #include "Renderer/Model.h"
 #include "Renderer/Renderer.h"
@@ -14,13 +15,15 @@
 
 bool SpaceGame::Initialize()
 {
+
+    viper::file::SetCurrentDirectory("Assets");
     m_scene = std::make_unique<viper::Scene>(this);
 
     m_titleFont = std::make_unique<viper::Font>();
-    m_titleFont->Load("Assets/Madina.ttf", 128);
+    m_titleFont->Load("Prisma.ttf", 128);
 
     m_uiFont = std::make_unique<viper::Font>();
-    m_uiFont->Load("Assets/Madina.ttf", 48);
+    m_uiFont->Load("Prisma.ttf", 48);
 
     return true;
 }
@@ -93,8 +96,11 @@ void SpaceGame::Update(float dt)
     m_scene->Update(viper::GetEngine().GetTime().GetDeltaTime());
 }
 
-void SpaceGame::Draw()
+void SpaceGame::Draw(viper::Renderer& renderer)
 {
+	m_titleText->Create(renderer, "Space Game", viper::vec3{ 1, 0, 0 });
+	m_titleText->Draw(renderer, 100.0f, 100.0f);
+
     m_scene->Draw(viper::GetEngine().GetRenderer());
 }
 
