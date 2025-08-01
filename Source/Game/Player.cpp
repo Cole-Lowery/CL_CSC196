@@ -1,16 +1,25 @@
 #include "Player.h"
 #include "Engine.h"
-#include "Rocket.h"
-#include "Framework/Actor.h"
-#include "Framework/Scene.h"
-#include "Math/Vector3.h"
-#include "GameData.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/Model.h"
 #include "Input/InputSystem.h"
+#include "Renderer/Renderer.h"
+#include "GameData.h"
+#include "Math/Vector3.h"
+#include "Rocket.h"
+#include "Framework/Scene.h"
+#include "Renderer/Model.h"
+#include "Game/SpaceGame.h"
+#include "Renderer/ParticleSystem.h"
+#include "Core/Random.h"
 
 void Player::Update(float dt)
 {
+    viper::Particle particle;
+    particle.position = m_transform.position;
+    particle.velocity = viper::vec2{ viper::random::getReal(-200.0f , 200.0f), viper::random::getReal(-200.0f , 200.0f) };
+    particle.color = { 1, 1, 1 };
+    particle.lifespan = 2;
+    viper::GetEngine().GetParticleSystem().AddParticle(particle);
+
     //Rotation
     float rotate = 0;
     if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate = -1;
@@ -50,9 +59,10 @@ void Player::Update(float dt)
 
 }
 
-void Player::OnCollision(Actor* other)
-{
+void Player::OnCollision(Actor* other) {
     if (tag != other->tag) {
         destroyed = true;
+        dynamic_cast<SpaceGame*>(m_scene->GetGame())->OnPlayerDeath();
+
     }
 }

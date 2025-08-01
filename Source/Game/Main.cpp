@@ -14,6 +14,7 @@
 #include "Engine.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
+#include "Renderer/ParticleSystem.h"
 
 #include "Player.h"
 #include "Game/SpaceGame.h"

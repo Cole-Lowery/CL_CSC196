@@ -27,6 +27,11 @@ namespace viper {
 			return min + result;
 		}
 
+		template<typename T>
+		inline float sign(T v) {
+			return (v < 0) ? (T)-1 : (v > 0) ? (T)1 : (T)0;
+		}
+
 		using std::min;
 		using std::max;
 		using std::clamp;
@@ -36,6 +41,8 @@ namespace viper {
 		using std::sinf;
 		using std::cos;
 		using std::cosf;
+		using std::acos;
+		using std::acosf;
 		using std::atan2;
 		using std::atan2f;
 	}
